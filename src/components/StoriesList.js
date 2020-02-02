@@ -9,16 +9,18 @@ export default function StoriesList() {
     getStories().then(res => setStories(res));
   }, []);
 
-  if (!stories) return <div>loading...</div>;
-
-  if (stories)
-    return (
-      <>
-        {stories.slice(0,500).map(storyId => (
-          <div key={storyId}>
-            <Story storyId={storyId} />
-          </div>
-        ))}
-      </>
-    );
+  if (stories.length === 0) {
+    return <div>Loading...</div>;
+  } else {
+    if (stories)
+      return (
+        <>
+          {stories.slice(0, 100).map(storyId => (
+            <div key={storyId}>
+              <Story storyId={storyId} />
+            </div>
+          ))}
+        </>
+      );
+  }
 }
