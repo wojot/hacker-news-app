@@ -1,9 +1,9 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect } from "react";
 import { getStories } from "../services/hackerNewsAPI";
-import { Row, Spinner } from "react-bootstrap";
+import { Container, Row, Spinner, CardColumns } from "react-bootstrap";
 import StoryDefault from "./StoryDefault";
-
-const Story = lazy(() => import("./Story"));
+import LazyLoad from "react-lazyload";
+import Story from "./Story";
 
 export default function StoriesList() {
   const [stories, setStories] = useState([]);
@@ -18,13 +18,16 @@ export default function StoriesList() {
     if (stories)
       return (
         <>
-          <Row className="justify-content-md-center">
-            {stories.slice(0, 1000).map(storyId => (
-              <Suspense key={storyId} fallback={<StoryDefault />}>
-                <Story storyId={storyId} />
-              </Suspense>
-            ))}
-          </Row>
+          testtt
+          <Container fluid={true}>
+            <CardColumns>
+              {stories.map(storyId => (
+                <LazyLoad key={storyId} placeholder={<StoryDefault />}>
+                  <Story storyId={storyId} />
+                </LazyLoad>
+              ))}
+            </CardColumns>
+          </Container>
         </>
       );
   }
