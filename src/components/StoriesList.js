@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getStories } from "../services/hackerNewsAPI";
-import { Container, Row, Spinner, CardColumns } from "react-bootstrap";
+import { Container, Spinner, CardColumns } from "react-bootstrap";
 import StoryDefault from "./StoryDefault";
 import LazyLoad from "react-lazyload";
 import Story from "./Story";
@@ -18,7 +18,6 @@ export default function StoriesList() {
     if (stories)
       return (
         <>
-          testtt
           <Container fluid={true}>
             <CardColumns>
               {stories.map(storyId => (
