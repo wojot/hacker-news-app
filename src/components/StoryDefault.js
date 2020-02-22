@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 
 export default function StoryDefault() {
