@@ -1,6 +1,7 @@
 import React from "react";
-import "./App.css";
 import StoriesList from "./components/StoriesList";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   return (

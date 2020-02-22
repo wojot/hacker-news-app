@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { getStories } from "../services/hackerNewsAPI";
-import Story from "./Story";
+import { Row, Spinner } from "react-bootstrap";
+import StoryDefault from "./StoryDefault";
+
+const Story = lazy(() => import("./Story"));
 
 export default function StoriesList() {
   const [stories, setStories] = useState([]);
@@ -10,16 +13,18 @@ export default function StoriesList() {
   }, []);
 
   if (stories.length === 0) {
-    return <div>Loading...</div>;
+    return <Spinner animation="border" variant="primary" />;
   } else {
     if (stories)
       return (
         <>
-          {stories.slice(0, 100).map(storyId => (
-            <div key={storyId}>
-              <Story storyId={storyId} />
-            </div>
-          ))}
+          <Row className="justify-content-md-center">
+            {stories.slice(0, 1000).map(storyId => (
+              <Suspense key={storyId} fallback={<StoryDefault />}>
+                <Story storyId={storyId} />
+              </Suspense>
+            ))}
+          </Row>
         </>
       );
   }
