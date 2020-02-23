@@ -40,7 +40,7 @@ export default function CommentsModal({ story }) {
         </Modal.Header>
         <Modal.Body className="modalCommentsBody">
           {comments.map(comment => (
-            <Comment comment={comment} />
+            <Comment key={comment.id} comment={comment} />
           ))}
         </Modal.Body>
       </Modal>

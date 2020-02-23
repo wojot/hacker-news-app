@@ -9,7 +9,7 @@ export default function StoriesList() {
   const [stories, setStories] = useState([]);
 
   useEffect(() => {
-    getStories().then(res => setStories(res));
+    getStories(window.location.pathname).then(res => setStories(res));
   }, []);
 
   if (stories.length === 0) {
@@ -21,7 +21,12 @@ export default function StoriesList() {
           <Container fluid={true}>
             <CardColumns>
               {stories.map(storyId => (
-                <LazyLoad key={storyId} placeholder={<StoryDefault />}>
+                <LazyLoad
+                  height={200}
+                  offset={100}
+                  key={storyId}
+                  placeholder={<StoryDefault />}
+                >
                   <Story storyId={storyId} />
                 </LazyLoad>
               ))}

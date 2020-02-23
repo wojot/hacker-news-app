@@ -1,13 +1,17 @@
 import React from "react";
 import StoriesList from "./components/StoriesList";
+import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <StoriesList />
-    </div>
+    <>
+      <Header />
+      <div className="App">
+        <StoriesList />
+      </div>
+    </>
   );
 }
 
