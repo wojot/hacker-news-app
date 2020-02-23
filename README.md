@@ -1,3 +1,5 @@
+Front app of Hacker News API. Technologies: React (functions only)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

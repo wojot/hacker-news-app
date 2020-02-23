@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getStory } from "../services/hackerNewsAPI";
 import StoryDefault from "./StoryDefault";
+import CommentsModal from "./CommentsModal";
 import Moment from "react-moment";
 import { Card, Spinner, Badge, Button } from "react-bootstrap";
 
@@ -42,6 +43,8 @@ export default function Story({ storyId }) {
               )}
             </Card.Text>
             <Card.Text>
+              {story.kids ? <CommentsModal story={story} /> : ""}
+              {"  "}
               {story.url ? (
                 <Button
                   variant="outline-light"

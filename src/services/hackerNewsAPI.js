@@ -9,3 +9,7 @@ export const getStories = async () => {
 export const getStory = async id => {
   return await axios.get(`${BASE_URL}item/${id}.json`).then(res => res.data);
 };
+
+export const getComment = async id => {
+  return await axios.get(`${BASE_URL}item/${id}.json`).then(res => res.data);
+};
