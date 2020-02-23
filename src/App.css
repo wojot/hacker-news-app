@@ -13,3 +13,23 @@ body {
   width: 100%;
   margin-bottom: 20px;
 }
+
+.modalComments {
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0.95;
+}
+
+.modalCommentsBody {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.commentBlock {
+  margin: 1px;
+}
+
+.dateComment {
+  color: gray;
+  font-size: smaller;
+  align-content: right;
+  float: right;
+}
