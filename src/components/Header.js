@@ -3,13 +3,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 export default function Header() {
   return (
-    <Navbar
-      collapseOnSelect
-      expand="lg"
-      bg="dark"
-      variant="dark"
-      className="navbar"
-    >
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
       <Navbar.Brand href="#home">Hacker News app</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

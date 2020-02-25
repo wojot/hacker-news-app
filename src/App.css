@@ -34,9 +34,3 @@ body {
   align-content: right;
   float: right;
 }
-
-.navbar {
-  width: 100%;
-  position: fixed;
-  z-index: 2;
-}
