@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { getComment } from "../services/hackerNewsAPI";
 import Comment from "./Comment";
@@ -8,12 +8,12 @@ export default function CommentsModal({ story }) {
   const [modalActive, setModalActive] = useState(false);
   const [comments, setComments] = useState([]);
 
-  const getComments = kids => {
+  const getComments = (kids) => {
     setModalActive(true);
     if (kids) {
-      kids.forEach(kid => {
-        getComment(kid).then(res =>
-          setComments(prevComments => [...prevComments, res])
+      kids.forEach((kid) => {
+        getComment(kid).then((res) =>
+          setComments((prevComments) => [...prevComments, res])
         );
       });
     }
@@ -39,7 +39,7 @@ export default function CommentsModal({ story }) {
           <Modal.Title id="comment-modal">{title} - comments:</Modal.Title>
         </Modal.Header>
         <Modal.Body className="modalCommentsBody">
-          {comments.map(comment => (
+          {comments.map((comment) => (
             <Comment key={comment.id} comment={comment} />
           ))}
         </Modal.Body>

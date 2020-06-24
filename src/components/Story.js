@@ -9,8 +9,8 @@ export default function Story({ storyId }) {
   const [story, setStory] = useState([]);
 
   useEffect(() => {
-    getStory(storyId).then(res => setStory(res));
-  }, []);
+    getStory(storyId).then((res) => setStory(res));
+  }, [storyId]);
 
   if (story) {
     return (
