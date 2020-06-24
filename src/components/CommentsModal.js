@@ -9,6 +9,7 @@ export default function CommentsModal({ story }) {
   const [comments, setComments] = useState([]);
 
   const getComments = (kids) => {
+    setComments([]);
     setModalActive(true);
     if (kids) {
       kids.forEach((kid) => {
