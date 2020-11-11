@@ -9,12 +9,17 @@ export default function StoriesList() {
   const [stories, setStories] = useState([]);
 
   useEffect(() => {
+    console.log("useeffect");
+
     switch (window.location.hash.substring(1)) {
       case "sortDateDesc":
+        console.log("sortDateDesc");
         break;
       case "sortDateAsc":
+        console.log("sortDateAsc");
         break;
       case "sortScore":
+        console.log("sortScore");
         break;
       default:
         break;
@@ -23,7 +28,7 @@ export default function StoriesList() {
     let path = window.location.pathname;
     if (path === "/") path = "/new"; // TODO: need to create main page instead that
     getStories(path).then((res) => {
-      console.log(res);
+      // console.log(res);
       setStories(res);
     });
   }, []);
