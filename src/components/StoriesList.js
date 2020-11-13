@@ -1,37 +1,50 @@
 import React, { useState, useEffect } from "react";
-import { getStories } from "../services/hackerNewsAPI";
+import { getStories, getStory } from "../services/hackerNewsAPI";
 import { Container, Spinner, CardColumns } from "react-bootstrap";
 import StoryDefault from "./StoryDefault";
 import LazyLoad from "react-lazyload";
 import Story from "./Story";
 
-export default function StoriesList() {
+export default function StoriesList({ path, sortProp }) {
   const [stories, setStories] = useState([]);
+  const [storiesDetails, setStoriesDetails] = useState([]);
 
   useEffect(() => {
-    console.log("useeffect");
-
-    switch (window.location.hash.substring(1)) {
+    switch (sortProp) {
       case "sortDateDesc":
-        console.log("sortDateDesc");
+        console.log("dateDesc");
         break;
       case "sortDateAsc":
-        console.log("sortDateAsc");
+        console.log("dateAsc");
         break;
       case "sortScore":
-        console.log("sortScore");
+        console.log("score");
         break;
       default:
         break;
     }
 
-    let path = window.location.pathname;
     if (path === "/") path = "/new"; // TODO: need to create main page instead that
     getStories(path).then((res) => {
-      // console.log(res);
       setStories(res);
     });
-  }, []);
+
+    // stories.map((id) => {
+    //   return getStory(id).then((res) => {
+    //     let obj = { id: res.id, score: res.score };
+    //     setStoriesDetails([...storiesDetails, obj]);
+    //   });
+    // });
+
+    setStoriesDetails([0, 1]);
+    console.log(storiesDetails);
+
+    // getStories(path).then(res => {
+    //   res.map(id =>{
+    //     console.log(id)
+    //   }
+    // })
+  }, [sortProp]);
 
   if (stories.length === 0) {
     return <Spinner animation="border" variant="primary" />;

@@ -1,7 +1,11 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
-export default function Header() {
+export default function Header(props) {
+  const sort = (sortType) => {
+    props.sortProp(sortType);
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
       <Navbar.Brand href="#home">Hacker News app</Navbar.Brand>
@@ -13,13 +17,13 @@ export default function Header() {
         </Nav>
         <Nav className="mr-auto">
           <NavDropdown title="Sort" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="#sortDateDesc">
+            <NavDropdown.Item onClick={() => sort("dateDesc")}>
               Date descending
             </NavDropdown.Item>
-            <NavDropdown.Item href="#sortDateAsc">
+            <NavDropdown.Item onClick={() => sort("dateAsc")}>
               Date ascending
             </NavDropdown.Item>
-            <NavDropdown.Item href="#sortScore">
+            <NavDropdown.Item onClick={() => sort("score")}>
               Score descending
             </NavDropdown.Item>
           </NavDropdown>
