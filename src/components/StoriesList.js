@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getStories, getStory } from "../services/hackerNewsAPI";
+import { getStories, getStoresDetails } from "../services/hackerNewsAPI";
 import { Container, Spinner, CardColumns } from "react-bootstrap";
 import StoryDefault from "./StoryDefault";
 import LazyLoad from "react-lazyload";
@@ -10,40 +10,40 @@ export default function StoriesList({ path, sortProp }) {
   const [storiesDetails, setStoriesDetails] = useState([]);
 
   useEffect(() => {
-    switch (sortProp) {
-      case "sortDateDesc":
-        console.log("dateDesc");
-        break;
-      case "sortDateAsc":
-        console.log("dateAsc");
-        break;
-      case "sortScore":
-        console.log("score");
-        break;
-      default:
-        break;
+    if (sortProp) {
+      let storiesOrdered = [];
+      switch (sortProp) {
+        case "dateDesc":
+          setStoriesDetails(storiesDetails.sort((a, b) => b.time - a.time));
+          storiesDetails.forEach((story) => {
+            storiesOrdered = [...storiesOrdered, story.id];
+          });
+          break;
+        case "dateAsc":
+          setStoriesDetails(storiesDetails.sort((a, b) => a.time - b.time));
+          storiesDetails.forEach((story) => {
+            storiesOrdered = [...storiesOrdered, story.id];
+          });
+          break;
+        case "score":
+          setStoriesDetails(storiesDetails.sort((a, b) => b.score - a.score));
+          storiesDetails.forEach((story) => {
+            storiesOrdered = [...storiesOrdered, story.id];
+          });
+          break;
+        default:
+          break;
+      }
+      setStories(storiesOrdered);
+    } else {
+      if (path === "/") path = "/new"; // TODO: need to create main page instead that
+      getStories(path).then((res) => {
+        setStories(res);
+        getStoresDetails(res).then((res) => {
+          setStoriesDetails(res);
+        });
+      });
     }
-
-    if (path === "/") path = "/new"; // TODO: need to create main page instead that
-    getStories(path).then((res) => {
-      setStories(res);
-    });
-
-    // stories.map((id) => {
-    //   return getStory(id).then((res) => {
-    //     let obj = { id: res.id, score: res.score };
-    //     setStoriesDetails([...storiesDetails, obj]);
-    //   });
-    // });
-
-    setStoriesDetails([0, 1]);
-    console.log(storiesDetails);
-
-    // getStories(path).then(res => {
-    //   res.map(id =>{
-    //     console.log(id)
-    //   }
-    // })
   }, [sortProp]);
 
   if (stories.length === 0) {
