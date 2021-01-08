@@ -4,7 +4,12 @@ import { Spinner } from "react-bootstrap";
 
 export default function StoryDefault() {
   return (
-    <Card bg="dark" text="white" className="card">
+    <Card
+      bg="dark"
+      text="white"
+      className="card"
+      style={{ maxWidth: "32%", marginLeft: "1%", float: "left" }}
+    >
       <Card.Body>
         <Card.Title>
           <Spinner animation="grow" variant="primary" />

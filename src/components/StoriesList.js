@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getStories, getStoresDetails } from "../services/hackerNewsAPI";
-import { Container, Spinner, CardColumns } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import StoryDefault from "./StoryDefault";
 import LazyLoad from "react-lazyload";
 import Story from "./Story";
@@ -36,12 +36,16 @@ export default function StoriesList({ path, sortProp }) {
       }
       setStories(storiesOrdered);
     } else {
-      if (path === "/") path = "/new"; // TODO: need to create main page instead that
       getStories(path).then((res) => {
         setStories(res);
-        getStoresDetails(res).then((res) => {
-          setStoriesDetails(res);
-        });
+        setTimeout(
+          function () {
+            getStoresDetails(res).then((res) => {
+              setStoriesDetails(res);
+            });
+          }.bind(this),
+          1000
+        );
       });
     }
   }, [sortProp]);
@@ -53,8 +57,8 @@ export default function StoriesList({ path, sortProp }) {
       return (
         <>
           <Container fluid={true}>
-            <CardColumns>
-              {stories.map((storyId) => (
+            {stories.map((storyId) => {
+              return (
                 <LazyLoad
                   height={200}
                   offset={100}
@@ -63,8 +67,8 @@ export default function StoriesList({ path, sortProp }) {
                 >
                   <Story storyId={storyId} />
                 </LazyLoad>
-              ))}
-            </CardColumns>
+              );
+            })}
           </Container>
         </>
       );

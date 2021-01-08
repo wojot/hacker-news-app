@@ -15,11 +15,21 @@ export default function Story({ storyId }) {
   if (story) {
     return (
       <>
-        <Card bg="dark" text="white" className="card">
+        <Card
+          bg="dark"
+          text="white"
+          className="card"
+          style={{
+            maxWidth: "32%",
+            marginLeft: "1%",
+            float: "left",
+            height: "110px",
+          }}
+        >
           <Card.Body>
             <Card.Title>
               {story.title ? (
-                story.title
+                story.title.substring(0, 60) + "..."
               ) : (
                 <Spinner animation="grow" variant="primary" />
               )}{" "}

@@ -8,7 +8,7 @@ export default function Header(props) {
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
-      <Navbar.Brand href="#home">Hacker News app</Navbar.Brand>
+      <Navbar.Brand href="/">Hacker News app</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav>
